@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Cuadrante - Cajas</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header class="no-imprimir">
+        <div class="logo-contenedor">
+            <img src="logo.png" alt="Family Cash" class="logo-img">
+            <h1>Gestión de Cuadrante de Cajas</h1>
+        </div>
+        
+        <!-- Selector rápido de histórico de semanas -->
+        <div class="selector-historico">
+            <label for="select-semana">Semana:</label>
+            <select id="select-semana" onchange="cambiarSemanaHistorica(this.value)"></select>
+            <button onclick="crearNuevaSemana()" class="btn-primary">➕ Nueva Semana</button>
+        </div>
+
+        <div class="acciones">
+            <button onclick="guardarDatos()" class="btn-primary">💾 Guardar</button>
+            <button onclick="abrirGestionPersonal()" class="btn-secondary">⚙️ Gestionar Personal</button>
+            <button onclick="abrirResumenMensual()" class="btn-secondary">📊 Acumulado Mes</button>
+            <button onclick="exportarACSV()" class="btn-secondary">📥 Descargar CSV</button>
+            <button onclick="window.print()" class="btn-secondary">🖨️ Imprimir</button>
+            <button onclick="generarMensajeWhatsApp()" class="btn-whatsapp">📱 WhatsApp</button>
+        </div>
+    </header>
+
+    <main>
+        <section class="info-semana">
+            <h2 id="titulo-semana">SEMANA</h2>
+            <p class="instruccion no-imprimir">💡 Selecciona el turno en cada desplegable. Las horas se calculan solas y puedes gestionar el personal fácilmente desde los botones superiores.</p>
+        </section>
+
+        <div id="tabla-contenedor"></div>
+    </main>
+
+    <!-- Modal para WhatsApp -->
+    <div id="modal-whatsapp" class="modal no-imprimir" style="display:none;">
+        <div class="modal-content">
+            <span class="close" onclick="cerrarModal('modal-whatsapp')">&times;</span>
+            <h3>Mensaje para WhatsApp</h3>
+            <textarea id="texto-whatsapp" rows="12" readonly></textarea>
+            <button onclick="copiarAlPortapapeles()" class="btn-primary">Copiar al Portapapeles</button>
+        </div>
+    </div>
+
+    <!-- Modal para Acumulado Mensual -->
+    <div id="modal-mes" class="modal no-imprimir" style="display:none;">
+        <div class="modal-content modal-ancho">
+            <span class="close" onclick="cerrarModal('modal-mes')">&times;</span>
+            <h3>📊 Resumen Acumulado de Horas (Mes)</h3>
+            <p class="instruccion">Suma total de horas de todos los empleados en las semanas guardadas.</p>
+            <div id="contenido-resumen-mes"></div>
+        </div>
+    </div>
+
+    <!-- Modal para Gestionar Personal -->
+    <div id="modal-personal" class="modal no-imprimir" style="display:none;">
+        <div class="modal-content modal-ancho">
+            <span class="close" onclick="cerrarModal('modal-personal')">&times;</span>
+            <h3>⚙️ Gestión de Personal (Plantilla)</h3>
+            <p class="instruccion">Añade nuevos trabajadores o da de baja a los que ya no estén.</p>
+            
+            <div class="form-nuevo-empleado">
+                <h4>Añadir nuevo trabajador/a:</h4>
+                <input type="text" id="input-nombre-nuevo" placeholder="Nombre del empleado/a">
+                <select id="select-bloque-nuevo">
+                    <option value="0">TURNO MAÑANA</option>
+                    <option value="1">TURNO TARDE</option>
+                    <option value="2">ROTATIVO / APOYO</option>
+                </select>
+                <button onclick="agregarEmpleado()" class="btn-primary">➕ Añadir</button>
+            </div>
+
+            <hr style="margin: 15px 0; border: 0; border-top: 1px solid #cbd5e1;">
+
+            <h4>Personal actual en plantilla:</h4>
+            <div id="lista-gestion-personal" style="max-height: 250px; overflow-y: auto;"></div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
