@@ -7,27 +7,29 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
-    <header class="no-imprimir">
+    <header>
         <div class="logo-contenedor">
             <img src="logo.png" alt="Family Cash" class="logo-img">
-            <h1>Gestión de Cuadrante de Cajas</h1>
+            <h1 class="no-imprimir">Gestión de Cuadrante de Cajas</h1>
         </div>
         
         <!-- Selector rápido de histórico de semanas -->
-        <div class="selector-historico">
+        <div class="selector-historico no-imprimir">
             <label for="select-semana">Semana:</label>
             <select id="select-semana" onchange="cambiarSemanaHistorica(this.value)"></select>
             <button onclick="crearNuevaSemana()" class="btn-primary">➕ Nueva Semana</button>
         </div>
 
-        <div class="acciones">
+        <div class="acciones no-imprimir">
             <button onclick="guardarDatos()" class="btn-primary">💾 Guardar</button>
             <button onclick="abrirGestionPersonal()" class="btn-secondary">⚙️ Gestionar Personal</button>
             <button onclick="abrirResumenMensual()" class="btn-secondary">📊 Acumulado Mes</button>
             <button onclick="exportarACSV()" class="btn-secondary">📥 Descargar CSV</button>
+            <button onclick="exportarCopiaJSON()" class="btn-secondary">📤 Copia JSON</button>
+            <button onclick="abrirSelectorJSON()" class="btn-secondary">📥 Restaurar JSON</button>
             <button onclick="window.print()" class="btn-secondary">🖨️ Imprimir</button>
             <button onclick="generarMensajeWhatsApp()" class="btn-whatsapp">📱 WhatsApp</button>
+            <input type="file" id="input-importar-json" accept=".json,application/json" style="display:none;" onchange="importarCopiaJSON(event)">
         </div>
     </header>
 
@@ -38,6 +40,11 @@
         </section>
 
         <div id="tabla-contenedor"></div>
+
+        <section id="notas-semana" class="bloque-notas-semana" style="margin-top: 20px; background: white; padding: 12px 15px; border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+            <label for="texto-notas-semana" style="display: block; font-weight: bold; font-size: 13px; color: #3b3532; margin-bottom: 6px;">📝 Cambios de días / Notas de la semana:</label>
+            <textarea id="texto-notas-semana" rows="3" style="width: 100%; padding: 8px; border: 1px solid #cbd5e1; border-radius: 4px; font-size: 12px; font-family: Arial, sans-serif;" placeholder="Ej: M. José cambia el viernes por el 6/12. (Recordatorio: si es BAJA, no poner motivos ni detalles)"></textarea>
+        </section>
     </main>
 
     <!-- Modal para WhatsApp -->
@@ -73,7 +80,6 @@
                 <select id="select-bloque-nuevo">
                     <option value="0">TURNO MAÑANA</option>
                     <option value="1">TURNO TARDE</option>
-                    <option value="2">ROTATIVO / APOYO</option>
                 </select>
                 <button onclick="agregarEmpleado()" class="btn-primary">➕ Añadir</button>
             </div>

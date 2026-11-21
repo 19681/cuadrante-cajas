@@ -116,9 +116,10 @@ th, td {
     font-size: 12px;
 }
 
-th {
-    background-color: #3b3532;
-    color: white;
+th,
+table thead th {
+    background-color: #9bcc2e; /* Verde corporativo Family Cash */
+    color: #3b3532;
     font-weight: bold;
 }
 
@@ -143,13 +144,25 @@ select:focus {
 }
 
 .celda-libre {
-    background-color: #f1f5f9;
+    background-color: #f1f5f9 !important;
     color: #64748b;
 }
 
 .celda-vac {
     background-color: #fee2e2;
     color: #991b1b;
+    font-weight: bold;
+}
+
+.celda-cambio {
+    background-color: #fef3c7;
+    color: #92400e;
+    font-weight: bold;
+}
+
+.celda-baja {
+    background-color: #e0e7ff;
+    color: #3730a3;
     font-weight: bold;
 }
 
@@ -230,9 +243,158 @@ select:focus {
     margin-top: 10px;
 }
 
+.empleado-nombre {
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.select-turno {
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.dia-fuerte {
+    background-color: #3b3532 !important;
+    color: #ffffff !important;
+    border-bottom: 2px solid #f59e0b !important;
+}
+
+.celda-manana {
+    background-color: #dbeafe !important;
+}
+
+.celda-tarde {
+    background-color: #ffedd5 !important;
+}
+
+.celda-vac-baja {
+    background-color: #ffe4e6 !important;
+}
+
 @media print {
-    .no-imprimir { display: none !important; }
-    body { background: white; padding: 0; }
-    table { box-shadow: none; font-size: 11px; }
-    @page { size: landscape; margin: 10mm; }
+    @page {
+        size: landscape;
+        margin: 5mm;
+    }
+
+    .no-imprimir {
+        display: none !important;
+    }
+
+    header {
+        background: transparent !important;
+        padding: 0 !important;
+        margin: 0 0 4px 0 !important;
+        box-shadow: none !important;
+        border-radius: 0 !important;
+        gap: 0 !important;
+    }
+
+    .logo-contenedor {
+        gap: 8px !important;
+    }
+
+    .logo-img {
+        height: 24px !important;
+        padding: 1px 4px !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+
+    body {
+        background: white !important;
+        padding: 0 !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+    }
+
+    .info-semana {
+        margin-bottom: 5px !important;
+    }
+
+    .info-semana h2 {
+        font-size: 14px !important;
+        margin-bottom: 2px !important;
+        padding-bottom: 2px !important;
+    }
+
+    .instruccion {
+        display: none !important;
+    }
+
+    table {
+        box-shadow: none !important;
+        margin-bottom: 7px !important;
+        break-inside: avoid !important;
+        page-break-inside: avoid !important;
+    }
+
+    tr {
+        break-inside: avoid !important;
+        page-break-inside: avoid !important;
+    }
+
+    th, td {
+        padding: 3px 5px !important;
+        font-size: 10px !important;
+    }
+
+    select,
+    .select-turno {
+        -webkit-appearance: none !important;
+        -moz-appearance: none !important;
+        appearance: none !important;
+        background: transparent !important;
+        background-image: none !important;
+        border: none !important;
+        padding: 0 2px !important;
+        font-size: 10.5px !important;
+        text-align: center !important;
+        text-align-last: center !important;
+    }
+
+    .empleado-nombre {
+        font-size: 10.5px !important;
+        padding: 1px 2px !important;
+    }
+
+    .fila-cobertura td {
+        padding: 2px 4px !important;
+        font-size: 9.5px !important;
+        line-height: 1.15 !important;
+    }
+
+    .bloque-notas-semana {
+        box-shadow: none !important;
+        border: 1px solid #cbd5e1 !important;
+        padding: 4px 8px !important;
+        margin-top: 4px !important;
+        break-inside: avoid !important;
+        page-break-inside: avoid !important;
+    }
+
+    .bloque-notas-semana textarea {
+        border: none !important;
+        resize: none !important;
+        overflow: visible !important;
+        padding: 0 !important;
+        min-height: 20px !important;
+        max-height: 36px !important;
+        height: 24px !important;
+        font-size: 10px !important;
+        line-height: 1.2 !important;
+    }
+
+    th,
+    table thead th,
+    .dia-fuerte,
+    .celda-manana,
+    .celda-tarde,
+    .celda-libre,
+    .celda-vac-baja,
+    .celda-cambio,
+    .fila-cobertura {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
 }
